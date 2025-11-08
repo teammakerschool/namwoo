@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>프로젝트 포트폴리오</title>
+  <style>
+    /* ===== 기본 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 20px 90px;
+    }
+    section { margin-bottom: 100px; }
+
+    /* ===== Cover ===== */
+    .cover {
+      text-align: left;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #eee;
+      page-break-inside: avoid;
+    }
+    .cover .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .cover h1 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cover .subtitle {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .stat-item {
+      flex: 1 1 200px;
+      border-left: 3px solid #1a1a1a;
+      padding-left: 20px;
+      page-break-inside: avoid;
+    }
+    .stat-number { font-size: 40px; font-weight: 700; }
+    .stat-label { font-size: 15px; color: #555; }
+    .stat-detail { font-size: 13px; color: #999; }
+
+    /* ===== Section header ===== */
+    .section-header { margin-bottom: 40px; page-break-inside: avoid; }
+    .section-header h2 { font-size: 36px; font-weight: 900; }
+    .section-subtitle { color: #666; font-size: 16px; }
+
+    /* ===== 대표 프로젝트 카드 ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .overview-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.2s ease;
+      background: #fff;
+      page-break-inside: avoid;
+    }
+    .overview-card:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.05); transform: translateY(-2px); }
+    .overview-card .img-box {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background: #f8f8f8;
+    }
+    .overview-card .img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .overview-badge {
+      display: inline-block;
+      font-size: 12px;
+      background: #f2f2f2;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    .overview-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .overview-desc { font-size: 14px; color: #333; margin-bottom: 4px; }
+    .overview-foot { font-size: 12px; color: #777; }
+
+    /* ===== Gallery ===== */
+    .project-gallery { margin-top: 40px; }
+    .gallery-title {
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 1px; color: #999;
+      margin-bottom: 4px;
+    }
+    .gallery-subtitle { font-size: 13px; color: #555; margin-bottom: 16px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      page-break-inside: avoid;
+    }
+    .gallery-item:hover { transform: translateY(-2px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    .gallery-item img {
+      width: 100%; height: 120px; object-fit: cover; display: block;
+    }
+
+    /* ===== 공통 섹션 (기술/창업) ===== */
+    .subsection { margin-bottom: 26px; }
+    .subsection-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: .7px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .award-major {
+      border-left: 4px solid #1a1a1a;
+      background: #fafafa;
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+    .award-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .award-title { font-size: 15px; font-weight: 700; }
+    .award-year {
+      font-size: 11px;
+      background: #e6e6e6;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .award-prize { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .award-org { font-size: 12px; color: #666; }
+    .award-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .award-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 12px;
+      background: #fff;
+      page-break-inside: avoid;
+    }
+
+    /* ===== Summary ===== */
+    .summary-box {
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+      page-break-inside: avoid;
+    }
+    .summary-block .num { font-size: 26px; font-weight: 800; }
+    .summary-block .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #777;
+      page-break-inside: avoid;
+    }
+
+    /* ===== 인쇄 버튼 (웹에서만) ===== */
+    .print-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      z-index: 999;
+    }
+    .print-btn:hover { background: #333; }
+
+    /* ===== 반응형 ===== */
+    @media (max-width: 700px) {
+      .container { padding: 30px 14px 70px; }
+      .cover h1 { font-size: 42px; }
+      .award-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ===== 인쇄 전용 ===== */
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+      body {
+        background: #fff;
+      }
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      .print-btn { display: none !important; }
+
+      /* 섹션은 기본적으로 페이지 끝나면 끊되,
+         너무 커서 한 번에 못 들어가는 건 브라우저가 자동으로 나눔 */
+      section {
+        page-break-before: avoid;
+        page-break-after: always;
+      }
+
+      /* hover 효과 제거 */
+      .overview-card:hover,
+      .gallery-item:hover {
+        box-shadow: none;
+        transform: none;
+      }
+
+      /* 갤러리가 너무 길면 한 페이지에 */
+      .project-gallery {
+        max-height: 230mm;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 웹에서만 보이는 프린트 버튼 -->
+  <button class="print-btn" onclick="window.print()">📄 PDF로 저장</button>
+
+  <div class="container">
+    <!-- 1. COVER -->
+    <section class="cover">
+      <div class="badge">PORTFOLIO 2022–2025</div>
+      <h1>프로젝트<br>포트폴리오</h1>
+      <p class="subtitle">기술과 창업, 두 축으로 성장한 여정</p>
+
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">국가급 대상</div>
+          <div class="stat-detail">국무총리상 · 장관상</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">₩10M</div>
+          <div class="stat-label">투자 유치</div>
+          <div class="stat-detail">WelcomEye 시드 투자</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24+</div>
+          <div class="stat-label">대회 수상</div>
+          <div class="stat-detail">SW, 로봇, 창업 등</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 대표 프로젝트 + 갤러리 -->
+    <section>
+      <div class="section-header">
+        <h2>대표 프로젝트 한눈에 보기</h2>
+        <p class="section-subtitle">창업 · 보안 · 해커톤 우승 프로젝트 요약</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="img-box">
+            <img src="images/9.jpg" alt="WelcomEye 시연" />
+          </div>
+          <div class="overview-badge">Startup / Assistive Tech</div>
+          <div class="overview-title">WelcomEye (BODA)</div>
+          <div class="overview-desc">
+            청각장애인 대상 스마트 도어벨 시스템.<br />
+            방문자 얼굴·음성 인식 → LED/모바일 알림.
+          </div>
+          <div class="overview-foot">시드 투자 ₩10,000,000 · 한양대 창업대회 대상</div>
+        </div>
+
+        <div class="overview-card">
+          <div class="img-box">
+            <img src="images/12.jpg" alt="OnMark 대시보드" />
+          </div>
+          <div class="overview-badge">AI / Privacy</div>
+          <div class="overview-title">OnMark</div>
+          <div class="overview-desc">
+            얼굴 ROI + DCT 워터마킹으로 딥페이크 대응.<br />
+            AI 기반 개인 이미지 보호 솔루션.
+          </div>
+          <div class="overview-foot">디지털 포렌식 기반 · ISEF 준비 프로젝트</div>
+        </div>
+
+        <div class="overview-card">
+          <div class="img-box">
+            <img src="images/1.jpg" alt="SW융합 해커톤" />
+          </div>
+          <div class="overview-badge">Hackathon Winner</div>
+          <div class="overview-title">제12회 대한민국 SW융합 해커톤</div>
+          <div class="overview-desc">
+            실시간 AI 분석과 SW 융합 솔루션으로<br />
+            과기정통부 장관상(대상) 수상.
+          </div>
+          <div class="overview-foot">팀장 · 기획 및 기술 총괄</div>
+        </div>
+      </div>
+
+      <!-- 갤러리 -->
+      <div class="project-gallery">
+        <h3 class="gallery-title">PROJECT GALLERY</h3>
+        <p class="gallery-subtitle">프로토타입 · 시연 현장 · 개발 화면</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item"><img src="images/3.jpg" alt=""></div>
+          <div class="gallery-item"><img src="images/7.jpg" alt=""></div>
+          <div class="gallery-item"><img src="images/6.jpg" alt=""></div>
+          <div class="gallery-item"><img src="images/11.jpg" alt=""></div>
+          <div class="gallery-item"><img src="images/9.jpg" alt=""></div>
+          <div class="gallery-item"><img src="images/4.jpg" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 기술 역량 -->
+    <section>
+      <div class="section-header">
+        <h2>기술 역량</h2>
+        <p class="section-subtitle">Software Development · AI · Robotics</p>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">MAJOR ACHIEVEMENTS</h3>
+        <div class="award-major">
+          <div class="award-header">
+            <h4 class="award-title">제 7회 한국 코드페어 (SW공모전)</h4>
+            <span class="award-year">2025</span>
+          </div>
+          <p class="award-prize">대상 (국무총리상)</p>
+          <p class="award-org">과학기술정보통신부</p>
+        </div>
+        <div class="award-major">
+          <div class="award-header">
+            <h4 class="award-title">제 12회 대한민국 SW융합 해커톤</h4>
+            <span class="award-year">2025</span>
+          </div>
+          <p class="award-prize">대상 (과학기술정보통신부 장관상)</p>
+          <p class="award-org">과학기술정보통신부</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">COMPETITIONS & HACKATHONS</h3>
+        <div class="award-grid">
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">순천향 SW해커톤</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">우수상</p>
+            <p class="award-org">순천향대학교 SW중심대학사업단</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">천안업성고 해커톤</h4>
+              <span class="award-year">2025</span>
+            </div>
+            <p class="award-prize">1위</p>
+            <p class="award-org">천안업성고등학교</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">천안업성고 해커톤</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">2위</p>
+            <p class="award-org">천안업성고등학교</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">제3회 IT코딩 발명 아이디어 및 에세이 경진대회</h4>
+              <span class="award-year">2025</span>
+            </div>
+            <p class="award-prize">동상</p>
+            <p class="award-org">사단법인 행복일자리운동본부</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">ROBOTICS & AI</h3>
+        <div class="award-grid">
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">FIRST LEGO League Korea</h4>
+              <span class="award-year">2023</span>
+            </div>
+            <p class="award-prize">Design Award</p>
+            <p class="award-org">사단법인 상상</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">FIRST LEGO League Open International Morocco</h4>
+              <span class="award-year">2023</span>
+            </div>
+            <p class="award-prize">한국대표 진출 (참가 인증)</p>
+            <p class="award-org">FIRST LEGO League / LOOP for Science & Technology</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">FIRST LEGO League Korea</h4>
+              <span class="award-year">2022–2023</span>
+            </div>
+            <p class="award-prize">로봇디자인 상</p>
+            <p class="award-org">사단법인 상상</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">World AI Robot Sports Festival</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">장려상 (마라톤 · 패널티킥 · 역도)</p>
+            <p class="award-org">사단법인 STEAM교육협회</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">천안 학생로봇대회</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">동상</p>
+            <p class="award-org">충청남도 천안교육지원청</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">AI Genius Academy</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">수료 + Challenge Day 참가상</p>
+            <p class="award-org">LG CNS</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">청소년 과학대장정(글로벌)</h4>
+              <span class="award-year">2025</span>
+            </div>
+            <p class="award-prize">수료</p>
+            <p class="award-org">한국과학창의재단</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 창업 역량 -->
+    <section>
+      <div class="section-header">
+        <h2>창업 역량</h2>
+        <p class="section-subtitle">Entrepreneurship & Innovation</p>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">MAJOR ACHIEVEMENTS</h3>
+        <div class="award-major">
+          <div class="award-header">
+            <h4 class="award-title">WelcomEye (BODA) 스마트 도어벨</h4>
+            <span class="award-year">2024</span>
+          </div>
+          <p class="award-prize">시드 투자 10,000,000원 유치</p>
+          <p class="award-org">Early-stage / Angel</p>
+        </div>
+        <div class="award-major">
+          <div class="award-header">
+            <h4 class="award-title">한양대학교 ERICA 고교창업경진대회</h4>
+            <span class="award-year">2024</span>
+          </div>
+          <p class="award-prize">대상 (총장상)</p>
+          <p class="award-org">한양대학교</p>
+        </div>
+        <div class="award-major">
+          <div class="award-header">
+            <h4 class="award-title">KDB STARTUP DEMO DAY</h4>
+            <span class="award-year">2024</span>
+          </div>
+          <p class="award-prize">우수 수료</p>
+          <p class="award-org">산은재단 · 산업은행 · 한국청년기업가정신재단</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">INNOVATION & PROGRAMS</h3>
+        <div class="award-grid">
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">Si-Tech Innovation Award 2024</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">은상 (대표이사상)</p>
+            <p class="award-org">전자신문 (Mobility Creative Sector)</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">KDB Develop Youth Camp 2기</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">우수상</p>
+            <p class="award-org">한국청년기업가정신재단</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">도깨비 메이커톤</h4>
+              <span class="award-year">2023</span>
+            </div>
+            <p class="award-prize">기술상</p>
+            <p class="award-org">창의혁신커뮤니티센터</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">고양 스마트시티 아이디어톤</h4>
+              <span class="award-year">2023</span>
+            </div>
+            <p class="award-prize">장려상</p>
+            <p class="award-org">고양특례시</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">SPECIAL RECOGNITION</h3>
+        <div class="award-grid">
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">국민성장펀드 보고대회</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">대통령 참석 행사 공식 초청</p>
+            <p class="award-org">정부·공공 스타트업 선정</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">2025 FedEx/JA International Trade Challenge</h4>
+              <span class="award-year">2025</span>
+            </div>
+            <p class="award-prize">Local Finals 진출</p>
+            <p class="award-org">JA Korea</p>
+          </div>
+          <div class="award-card">
+            <div class="award-header">
+              <h4 class="award-title">2024 KDB STARTUP DEMO DAY</h4>
+              <span class="award-year">2024</span>
+            </div>
+            <p class="award-prize">우수 수료</p>
+            <p class="award-org">산은재단 · 산업은행</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <div class="summary-block">
+          <div class="num">₩10M</div>
+          <div class="label">SEED INVESTMENT</div>
+        </div>
+        <div class="summary-block">
+          <div class="num">24+</div>
+          <div class="label">AWARDS</div>
+        </div>
+        <div class="summary-block">
+          <div class="num">2022–2025</div>
+          <div class="label">PERIOD</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Namwoo Jang · Online + Print Portfolio
+    </footer>
+  </div>
+</body>
+</html>
